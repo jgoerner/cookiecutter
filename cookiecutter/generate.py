@@ -25,7 +25,7 @@ from .exceptions import (
 )
 from .find import find_template
 from .hooks import run_hook
-from .utils import make_sure_path_exists, work_in, rmtree, clean_string
+from .utils import make_sure_path_exists, work_in, rmtree
 
 logger = logging.getLogger(__name__)
 
