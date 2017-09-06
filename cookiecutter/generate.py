@@ -25,7 +25,7 @@ from .exceptions import (
 )
 from .find import find_template
 from .hooks import run_hook
-from .utils import make_sure_path_exists, work_in, rmtree
+from .utils import make_sure_path_exists, work_in, rmtree, clean_string
 
 logger = logging.getLogger(__name__)
 
@@ -111,7 +111,10 @@ def generate_context(context_file='cookiecutter.json', default_context=None,
         apply_overwrites_to_context(obj, extra_context)
 
     logger.debug('Context generated is {}'.format(context))
-    return context
+    
+    context_cleaned = {k: clean_string(v) for k, v in context.items()}
+    
+    return context_cleaned
 
 
 def generate_file(project_dir, infile, context, env):
