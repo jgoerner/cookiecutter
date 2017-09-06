@@ -111,10 +111,8 @@ def generate_context(context_file='cookiecutter.json', default_context=None,
         apply_overwrites_to_context(obj, extra_context)
 
     logger.debug('Context generated is {}'.format(context))
-    
-    context_cleaned = {k: clean_string(v) for k, v in context.items()}
-    
-    return context_cleaned
+
+    return context
 
 
 def generate_file(project_dir, infile, context, env):
