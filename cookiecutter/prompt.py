@@ -9,6 +9,7 @@ Functions for prompting the user for project info.
 
 from collections import OrderedDict
 import json
+import logging
 
 import click
 from past.builtins import basestring
@@ -19,6 +20,9 @@ from jinja2.exceptions import UndefinedError
 
 from .exceptions import UndefinedVariableInTemplate
 from .environment import StrictEnvironment
+from .utils import clean_string
+
+logger = logging.getLogger(__name__)
 
 
 def read_user_variable(var_name, default_value):
@@ -230,4 +234,6 @@ def prompt_for_config(context, no_input=False):
             msg = "Unable to render variable '{}'".format(key)
             raise UndefinedVariableInTemplate(msg, err, context)
 
+    logger.debug('cookiecutter_dict is {}'.format(cookiecutter_dict))
+                
     return cookiecutter_dict
