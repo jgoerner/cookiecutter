@@ -234,7 +234,7 @@ def prompt_for_config(context, no_input=False):
             msg = "Unable to render variable '{}'".format(key)
             raise UndefinedVariableInTemplate(msg, err, context)
 
-    cookiecutter_dict = {k, remove_backspace(v) for k, v in cookiecutter_dict.items()}
+    cookiecutter_dict = {k, remove_backspaces(v) for k, v in cookiecutter_dict.items()}
             
     logger.debug('cookiecutter_dict is {}'.format(cookiecutter_dict))
                 
