@@ -79,3 +79,20 @@ def make_executable(script_path):
     """
     status = os.stat(script_path)
     os.chmod(script_path, status.st_mode | stat.S_IEXEC)
+    
+    
+def clean_string(odd_string):
+    """
+    clean user input backslashes
+    """
+    final_string = ""
+    cnt_ignore = 0
+    for c in odd_string.replace("\x08", "?")[::-1]:
+        if c == "?":
+            cnt_ignore += 1
+            continue
+        if cnt_ignore > 0:
+            cnt_ignore -= 1
+        else:
+            final_string = c + final_string
+    return final_string
