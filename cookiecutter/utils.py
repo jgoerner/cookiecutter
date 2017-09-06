@@ -81,13 +81,15 @@ def make_executable(script_path):
     os.chmod(script_path, status.st_mode | stat.S_IEXEC)
     
     
-def clean_string(odd_string):
+def remove_backspaces(input_string):
     """
-    clean user input backslashes
+    Cleans the \x08 (a.k.a. backspaces) from the user input
+    
+    :param input_string: The string to be cleaned
     """
     final_string = ""
     cnt_ignore = 0
-    for c in odd_string.replace("\x08", "?")[::-1]:
+    for c in input_string.replace("\x08", "?")[::-1]:
         if c == "?":
             cnt_ignore += 1
             continue
